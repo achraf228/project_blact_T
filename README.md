@@ -83,5 +83,3 @@ npm run preview
 - **Liens réseaux sociaux** : `src/components/Footer.jsx`
 - **Produits boutique** : `src/pages/Boutique.jsx` (tableau `products`)
 - **Événements / dates de concert** : `src/pages/Evenements.jsx`
-
-
