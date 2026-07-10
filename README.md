@@ -1,64 +1,87 @@
 # Black-T Igwe — Site Officiel
 
-Site vitrine React + Bootstrap pour l'artiste Black-T Igwe.
+Site vitrine officiel de l'artiste togolais **Black-T Igwe** (Eric Yaw Otu) : biographie, discographie, actualités, événements, boutique, press kit et linktree des plateformes de streaming.
 
-## 🚀 Installation
+## À propos du projet
+
+Black T Igwe, artiste togolais d'origine ghanéenne (Afrobeat, Afropop, RnB, Rap), a besoin d'une présence web centralisée pour ses fans, la presse et ses partenaires — un point d'entrée unique remplaçant la dispersion sur les réseaux sociaux. Ce site couvre :
+
+- **Biographie** — parcours de l'artiste, label (Wish Me Well Music), collaborations
+- **Discographie** — albums, EP, mixtapes
+- **Actualités** — clips, interviews, annonces
+- **Événements** — dates de concerts et statut billetterie
+- **Boutique** — merchandising (vitrine, sans paiement intégré pour l'instant)
+- **Press Book** — kit presse, photos HD, contacts médias
+- **Découvrir** (`/decouvrir`) — page linktree vers les plateformes de streaming
+- **Contact** — formulaire de booking/presse
+
+## État d'avancement
+
+Le site est fonctionnel et navigable de bout en bout, mais certains éléments sont volontairement des **placeholders** en attendant le contenu réel de l'artiste :
+
+| Élément | État actuel | À faire |
+|---|---|---|
+| Formulaire de contact | Statique (aucun email envoyé) | Brancher sur EmailJS / Formspree / backend |
+| Images (albums, actus, portraits) | Photos stock Unsplash | Remplacer par les vraies photos / pochettes |
+| Liens réseaux sociaux (Footer) | `href="#"` | Ajouter les vrais liens Instagram/YouTube/Spotify/TikTok |
+| Liens plateformes (`/decouvrir`) | URLs génériques des plateformes | Remplacer par les vrais liens de l'artiste |
+| Boutique — bouton "Ajouter" | Sans effet | Pas de logique panier prévue tant que ce n'est pas confirmé comme besoin |
+| Événements — bouton "Réserver" | Sans effet | À relier à une billetterie externe si besoin |
+
+Rien de ce qui précède n'est un bug : c'est du contenu à fournir par l'artiste/l'équipe avant mise en production.
+
+## Stack technique
+
+- React 18 + React Router DOM 6
+- Vite 8 (bundler) + `@vitejs/plugin-react` 6
+- Bootstrap 5 (grille, composants, responsive)
+- `react-icons` (icônes de marque — Simple Icons)
+- CSS personnalisé (`src/styles/global.css`) pour la palette, les animations (fade-in, hover, scroll-reveal via `IntersectionObserver`)
+
+## Structure du projet
+
+```
+project_blact_T/
+├── src/
+│   ├── components/   → Navbar, Footer
+│   ├── pages/        → Home, Biographie, Discographie, Boutique,
+│   │                    Actualites, Evenements, PressBook, Contact,
+│   │                    Decouvrir (linktree), NotFound
+│   ├── hooks/        → useReveal (animations au scroll)
+│   ├── images/       → assets locaux (Bio.jpg, bg_blackt.jpg)
+│   ├── styles/       → global.css (variables de couleur, animations)
+│   ├── App.jsx       → routing + montage Navbar/Footer conditionnel
+│   └── main.jsx       → point d'entrée
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+## Installation
 
 ```bash
-# 1. Dézippez le projet puis placez-vous dedans
-cd black-t-igwe
-
-# 2. Installez les dépendances
+git clone <url-du-repo>
+cd project_blact_T
 npm install
-
-# 3. Lancez le serveur de développement
 npm run dev
 ```
 
-Le site sera disponible sur **http://localhost:5173**
+Le site est disponible sur **http://localhost:5173**
 
-## 📦 Build de production
+## Build de production
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## 🗂️ Structure du projet
+## Personnalisation rapide
 
-```
-black-t-igwe/
-├── src/
-│   ├── components/   → Navbar, Footer
-│   ├── pages/        → Accueil, Biographie, Discographie, Boutique,
-│   │                    Actualités, Événements, Press Book, Contact, Découvrir (linktree)
-│   ├── hooks/         → useReveal (animations au scroll)
-│   ├── styles/        → global.css (palette, animations)
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── package.json
-└── vite.config.js
-```
-
-## 🎨 Personnalisation
-
-- **Couleurs** : modifiez les variables CSS dans `src/styles/global.css` (`:root`)
-- **Images** : remplacez les URLs Unsplash par les vraies photos de l'artiste dans chaque page (`src/pages/*.jsx`)
-- **Liens des plateformes musicales** : `src/pages/Decouvrir.jsx` (tableau `platforms`)
-- **Liens réseaux sociaux du footer** : `src/components/Footer.jsx`
+- **Couleurs / typographies** : `src/styles/global.css` (bloc `:root`)
+- **Images** : à remplacer directement dans chaque fichier `src/pages/*.jsx`
+- **Liens plateformes musicales** : `src/pages/Decouvrir.jsx` (tableau `platforms`)
+- **Liens réseaux sociaux** : `src/components/Footer.jsx`
 - **Produits boutique** : `src/pages/Boutique.jsx` (tableau `products`)
 - **Événements / dates de concert** : `src/pages/Evenements.jsx`
 
-## 🛠️ Stack technique
 
-- React 18 + React Router DOM
-- Vite (bundler)
-- Bootstrap 5 (grille, composants, responsive)
-- CSS personnalisé pour les animations (fade-in, hover, pulse, scroll-reveal)
-
-## 📝 Notes
-
-- La page "Découvrir ma musique" (`/decouvrir`) est un linktree intégré avec les liens Spotify, Apple Music, YouTube, Audiomack, Instagram et TikTok — à remplacer par les vrais liens de l'artiste.
-- Le formulaire de contact est statique côté front (pas d'envoi réel d'email) — branchez-le sur un service comme EmailJS, Formspree ou votre propre backend.
-- Pensez à remplacer les images Unsplash par les vraies photos / pochettes d'album de Black-T Igwe pour la mise en production.
