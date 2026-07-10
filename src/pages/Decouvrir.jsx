@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SiSpotify, SiApplemusic, SiYoutube, SiAudiomack, SiInstagram, SiTiktok } from 'react-icons/si';
 
 const platforms = [
-  { name: 'Spotify', cls: 'spotify', icon: '🟢', href: 'https://open.spotify.com' },
-  { name: 'Apple Music', cls: 'applemusic', icon: '🍎', href: 'https://music.apple.com' },
-  { name: 'YouTube', cls: 'youtube', icon: '▶️', href: 'https://youtube.com' },
-  { name: 'Audiomack', cls: 'audiomack', icon: '🔥', href: 'https://audiomack.com' },
-  { name: 'Instagram', cls: 'instagram', icon: '📸', href: 'https://instagram.com' },
-  { name: 'TikTok', cls: 'tiktok', icon: '🎵', href: 'https://tiktok.com' },
+  { name: 'Spotify', cls: 'spotify', icon: <SiSpotify />, href: 'https://open.spotify.com' },
+  { name: 'Apple Music', cls: 'applemusic', icon: <SiApplemusic />, href: 'https://music.apple.com' },
+  { name: 'YouTube', cls: 'youtube', icon: <SiYoutube />, href: 'https://youtube.com' },
+  { name: 'Audiomack', cls: 'audiomack', icon: <SiAudiomack />, href: 'https://audiomack.com' },
+  { name: 'Instagram', cls: 'instagram', icon: <SiInstagram />, href: 'https://instagram.com' },
+  { name: 'TikTok', cls: 'tiktok', icon: <SiTiktok />, href: 'https://tiktok.com' },
 ];
 
 export default function Decouvrir() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SiInstagram, SiYoutube, SiSpotify, SiTiktok } from 'react-icons/si';
 
 export default function Footer() {
   return (
@@ -11,10 +12,10 @@ export default function Footer() {
         <p className="mb-4">L'artiste qui fait vibrer la nouvelle génération.</p>
 
         <div className="mb-4">
-          <a href="#" className="social-icon" aria-label="Instagram">IG</a>
-          <a href="#" className="social-icon" aria-label="YouTube">YT</a>
-          <a href="#" className="social-icon" aria-label="Spotify">SP</a>
-          <a href="#" className="social-icon" aria-label="TikTok">TT</a>
+          <a href="#" className="social-icon" aria-label="Instagram"><SiInstagram /></a>
+          <a href="#" className="social-icon" aria-label="YouTube"><SiYoutube /></a>
+          <a href="#" className="social-icon" aria-label="Spotify"><SiSpotify /></a>
+          <a href="#" className="social-icon" aria-label="TikTok"><SiTiktok /></a>
         </div>
 
         <div className="mb-4 d-flex flex-wrap justify-content-center gap-3">

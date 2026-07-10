@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useReveal from '../hooks/useReveal';
 
 const albums = [
@@ -54,9 +55,9 @@ export default function Discographie() {
                   <div className="p-4">
                     <h5 className="mb-1">{a.title}</h5>
                     <p className="mb-3">{a.year}</p>
-                    <a href="/decouvrir" className="btn btn-outline-brand btn-sm w-100">
+                    <Link to="/decouvrir" className="btn btn-outline-brand btn-sm w-100">
                       Écouter
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
