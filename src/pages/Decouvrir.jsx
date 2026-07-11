@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SiSpotify, SiApplemusic, SiYoutube, SiAudiomack, SiInstagram, SiTiktok } from 'react-icons/si';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
 const platforms = [
-  { name: 'Spotify', cls: 'spotify', icon: <SiSpotify />, href: 'https://open.spotify.com' },
-  { name: 'Apple Music', cls: 'applemusic', icon: <SiApplemusic />, href: 'https://music.apple.com' },
-  { name: 'YouTube', cls: 'youtube', icon: <SiYoutube />, href: 'https://youtube.com' },
-  { name: 'Audiomack', cls: 'audiomack', icon: <SiAudiomack />, href: 'https://audiomack.com' },
-  { name: 'Instagram', cls: 'instagram', icon: <SiInstagram />, href: 'https://instagram.com' },
-  { name: 'TikTok', cls: 'tiktok', icon: <SiTiktok />, href: 'https://tiktok.com' },
+  { name: 'Spotify', cls: 'spotify', icon: <SiSpotify />, href: 'https://open.spotify.com/artist/2or7RJX45QsMkwIaeIOiSw' },
+  { name: 'Apple Music', cls: 'applemusic', icon: <SiApplemusic />, href: 'https://music.apple.com/us/artist/black-t-igwe/1492686530' },
+  { name: 'YouTube', cls: 'youtube', icon: <SiYoutube />, href: 'https://www.youtube.com/blacktigwe' },
+  { name: 'Audiomack', cls: 'audiomack', icon: <SiAudiomack />, href: 'https://audiomack.com/blacktigwe' },
+  { name: 'Instagram', cls: 'instagram', icon: <SiInstagram />, href: 'https://www.instagram.com/blacktigwe/' },
+  { name: 'TikTok', cls: 'tiktok', icon: <SiTiktok />, href: 'https://www.tiktok.com/@blacktigwe' },
 ];
 
 export default function Decouvrir() {
+  const [avatar, setAvatar] = useState(null);
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/press`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && data.photos && data.photos.length > 0) {
+          setAvatar(`${API_URL}/storage/${data.photos[0].image}`);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <div className="linktree-page">
       <div className="linktree-card">
-        <img
-          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400&auto=format&fit=crop"
-          alt="Black-T Igwe"
-          className="linktree-avatar"
-        />
+        {avatar ? (
+          <img src={avatar} alt="Black-T Igwe" className="linktree-avatar" />
+        ) : (
+          <div
+            className="linktree-avatar d-flex align-items-center justify-content-center"
+            style={{ background: 'var(--bg-secondary)', color: 'var(--text-secondary)', fontSize: '0.75rem' }}
+          >
+            Photo à venir
+          </div>
+        )}
         <h2 className="display-font mb-1">BLACK-T IGWE</h2>
         <p className="mb-4">Écoute-moi sur ta plateforme préférée</p>
 

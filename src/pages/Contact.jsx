@@ -47,7 +47,10 @@ export default function Contact() {
               {sent ? (
                 <div className="card-brand p-5 text-center">
                   <h3 className="mb-3">Merci ! 🙌</h3>
-                  <p>Votre message a bien été envoyé. Nous reviendrons vers vous rapidement.</p>
+                  <p className="mb-4">Votre message a bien été envoyé. Nous reviendrons vers vous rapidement.</p>
+                  <button className="btn btn-outline-brand" onClick={() => setSent(false)}>
+                    Envoyer un autre message
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
