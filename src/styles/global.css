@@ -1,12 +1,12 @@
 :root {
   --bg-main: #121212;
-  --bg-secondary: #1E1E1E;
-  --color-primary: #E63946;
-  --color-accent: #F4B400;
-  --text-main: #FFFFFF;
-  --text-secondary: #6C757D;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Poppins', sans-serif;
+  --bg-secondary: #1e1e1e;
+  --color-primary: #e63946;
+  --color-accent: #f4b400;
+  --text-main: #ffffff;
+  --text-secondary: #6c757d;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "Poppins", sans-serif;
 }
 
 * {
@@ -24,13 +24,19 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, .display-font {
+h1,
+h2,
+h3,
+h4,
+.display-font {
   font-family: var(--font-display);
   letter-spacing: 1px;
   color: var(--text-main);
 }
 
-p, span, li {
+p,
+span,
+li {
   color: var(--text-secondary);
 }
 
@@ -100,20 +106,27 @@ a {
 }
 
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 0 0 rgba(230,57,70,0.55); }
-  70% { box-shadow: 0 0 0 18px rgba(230,57,70,0); }
-  100% { box-shadow: 0 0 0 0 rgba(230,57,70,0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(230, 57, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+  }
 }
 
 .navbar-brand-custom {
-  background-color: rgba(18,18,18,0.92);
+  background-color: rgba(18, 18, 18, 0.92);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
   z-index: 999;
 }
 .navbar-brand-custom.scrolled {
   background-color: #121212;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 .navbar-brand-custom .nav-link {
   color: var(--text-main) !important;
@@ -123,7 +136,7 @@ a {
   transition: color 0.3s ease;
 }
 .navbar-brand-custom .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -4px;
@@ -164,8 +177,19 @@ a {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(18,18,18,0.55) 0%, rgba(18,18,18,0.75) 55%, #121212 100%),
-              linear-gradient(90deg, rgba(230,57,70,0.25) 0%, rgba(18,18,18,0) 50%, rgba(244,180,0,0.2) 100%);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18, 18, 18, 0.55) 0%,
+      rgba(18, 18, 18, 0.75) 55%,
+      #121212 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(230, 57, 70, 0.25) 0%,
+      rgba(18, 18, 18, 0) 50%,
+      rgba(244, 180, 0, 0.2) 100%
+    );
 }
 .hero-content {
   position: relative;
@@ -175,7 +199,7 @@ a {
 .hero-content h1 {
   font-size: clamp(3rem, 9vw, 7rem);
   line-height: 0.95;
-  text-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
 }
 .hero-content h1 .accent {
   color: var(--color-primary);
@@ -190,8 +214,14 @@ a {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .scroll-indicator {
@@ -203,8 +233,13 @@ a {
   animation: bounce 2s infinite;
 }
 @keyframes bounce {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, 12px); }
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 12px);
+  }
 }
 
 .section {
@@ -223,7 +258,7 @@ a {
   display: inline-block;
 }
 .section-title::after {
-  content: '';
+  content: "";
   display: block;
   width: 70px;
   height: 4px;
@@ -238,15 +273,18 @@ a {
 
 .card-brand {
   background-color: var(--bg-secondary);
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
   height: 100%;
 }
 .card-brand:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   border-color: var(--color-primary);
 }
 .card-brand img {
@@ -277,7 +315,9 @@ a {
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -287,7 +327,7 @@ a {
 .footer {
   background-color: #0c0c0c;
   padding: 60px 0 25px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 .social-icon {
   width: 42px;
@@ -310,7 +350,7 @@ a {
 
 .linktree-page {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #1E1E1E 0%, #121212 70%);
+  background: radial-gradient(circle at top, #1e1e1e 0%, #121212 70%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -327,13 +367,18 @@ a {
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid var(--color-primary);
-  box-shadow: 0 0 0 8px rgba(230,57,70,0.15);
+  box-shadow: 0 0 0 8px rgba(230, 57, 70, 0.15);
   margin-bottom: 20px;
   animation: floaty 4s ease-in-out infinite;
 }
 @keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 .link-btn {
   display: flex;
@@ -342,7 +387,7 @@ a {
   gap: 12px;
   width: 100%;
   background: var(--bg-secondary);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-main);
   font-weight: 600;
   font-size: 1.05rem;
@@ -357,14 +402,40 @@ a {
   transform: scale(1.04);
   color: #121212;
 }
-.link-btn.spotify:hover { background: #1DB954; }
-.link-btn.youtube:hover { background: #FF0000; color:#fff; }
-.link-btn.applemusic:hover { background: linear-gradient(135deg,#fa233b,#fb5c74); color:#fff; }
-.link-btn.audiomack:hover { background: #FFA200; }
-.link-btn.instagram:hover { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; }
-.link-btn.tiktok:hover { background: #000; color:#fff; border-color:#fff;}
+.link-btn.spotify:hover {
+  background: #1db954;
+}
+.link-btn.youtube:hover {
+  background: #ff0000;
+  color: #fff;
+}
+.link-btn.applemusic:hover {
+  background: linear-gradient(135deg, #fa233b, #fb5c74);
+  color: #fff;
+}
+.link-btn.audiomack:hover {
+  background: #ffa200;
+}
+.link-btn.instagram:hover {
+  background: linear-gradient(
+    45deg,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  );
+  color: #fff;
+}
+.link-btn.tiktok:hover {
+  background: #000;
+  color: #fff;
+  border-color: #fff;
+}
 
-.link-btn svg { font-size: 1.4rem; }
+.link-btn svg {
+  font-size: 1.4rem;
+}
 
 .event-card {
   background: var(--bg-secondary);
@@ -385,7 +456,7 @@ a {
 }
 
 .page-hero {
-  background: linear-gradient(135deg, #1E1E1E 0%, #121212 100%);
+  background: linear-gradient(135deg, #1e1e1e 0%, #121212 100%);
   padding: 160px 0 80px;
   text-align: center;
   border-bottom: 3px solid var(--color-primary);
@@ -393,16 +464,31 @@ a {
 
 .form-control-brand {
   background: var(--bg-secondary);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-main);
   padding: 14px;
   border-radius: 10px;
 }
+
 .form-control-brand:focus {
   background: var(--bg-secondary);
   color: var(--text-main);
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(230,57,70,0.25);
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.25);
+}
+
+.form-control-brand::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+.form-select.form-control-brand {
+  color: var(--text-main);
+}
+
+.form-select.form-control-brand option {
+  background: var(--bg-secondary);
+  color: var(--text-main);
 }
 
 .price-tag {

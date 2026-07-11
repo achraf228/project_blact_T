@@ -66,11 +66,21 @@ export default function PressBook() {
                   )}
                 </div>
                 <div className="col-lg-6 reveal">
-                  <img
-                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop"
-                    alt="Press kit"
-                    className="img-fluid rounded-4 shadow"
-                  />
+                  {press.photos.length > 0 ? (
+                    <img
+                      src={`${API_URL}/storage/${press.photos[0].image}`}
+                      alt="Black-T Igwe"
+                      className="img-fluid rounded-4 shadow"
+                      style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div
+                      className="rounded-4 shadow d-flex align-items-center justify-content-center"
+                      style={{ width: '100%', aspectRatio: '4/3', background: 'var(--color-surface, #1a1a1a)', color: 'var(--text-secondary)' }}
+                    >
+                      Aucune photo ajoutée pour l'instant
+                    </div>
+                  )}
                 </div>
               </div>
 

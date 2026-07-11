@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import useReveal from '../hooks/useReveal';
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   useReveal();
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setError(false);
+
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, e.target, { publicKey: PUBLIC_KEY })
+      .then(() => {
+        setSent(true);
+        setSending(false);
+      })
+      .catch(() => {
+        setError(true);
+        setSending(false);
+      });
   };
 
   return (
@@ -32,14 +51,19 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
+                  {error && (
+                    <div className="mb-3 p-3" style={{ background: 'rgba(230,57,70,0.15)', border: '1px solid var(--color-primary)', borderRadius: 10, color: '#fff' }}>
+                      Une erreur est survenue. Réessaie ou écris directement à l'adresse ci-contre.
+                    </div>
+                  )}
                   <div className="mb-3">
-                    <input type="text" className="form-control form-control-brand" placeholder="Votre nom" required />
+                    <input type="text" name="from_name" className="form-control form-control-brand" placeholder="Votre nom" required />
                   </div>
                   <div className="mb-3">
-                    <input type="email" className="form-control form-control-brand" placeholder="Votre email" required />
+                    <input type="email" name="from_email" className="form-control form-control-brand" placeholder="Votre email" required />
                   </div>
                   <div className="mb-3">
-                    <select className="form-select form-control-brand">
+                    <select name="subject" className="form-select form-control-brand">
                       <option>Demande de booking</option>
                       <option>Demande presse</option>
                       <option>Question générale</option>
@@ -47,10 +71,10 @@ export default function Contact() {
                     </select>
                   </div>
                   <div className="mb-3">
-                    <textarea className="form-control form-control-brand" rows="5" placeholder="Votre message" required></textarea>
+                    <textarea name="message" className="form-control form-control-brand" rows="5" placeholder="Votre message" required></textarea>
                   </div>
-                  <button type="submit" className="btn btn-brand w-100">
-                    Envoyer le message
+                  <button type="submit" className="btn btn-brand w-100" disabled={sending}>
+                    {sending ? 'Envoi en cours...' : 'Envoyer le message'}
                   </button>
                 </form>
               )}

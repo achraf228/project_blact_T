@@ -12,10 +12,10 @@ export default function Footer() {
         <p className="mb-4">L'artiste qui fait vibrer la nouvelle génération.</p>
 
         <div className="mb-4">
-          <a href="#" className="social-icon" aria-label="Instagram"><SiInstagram /></a>
-          <a href="#" className="social-icon" aria-label="YouTube"><SiYoutube /></a>
-          <a href="#" className="social-icon" aria-label="Spotify"><SiSpotify /></a>
-          <a href="#" className="social-icon" aria-label="TikTok"><SiTiktok /></a>
+          <a href="#" className="social-icon" aria-label="Instagram" style={{ color: '#E4405F' }}><SiInstagram /></a>
+          <a href="#" className="social-icon" aria-label="YouTube" style={{ color: '#FF0000' }}><SiYoutube /></a>
+          <a href="#" className="social-icon" aria-label="Spotify" style={{ color: '#1DB954' }}><SiSpotify /></a>
+          <a href="#" className="social-icon" aria-label="TikTok" style={{ color: '#000000' }}><SiTiktok /></a>
         </div>
 
         <div className="mb-4 d-flex flex-wrap justify-content-center gap-3">
