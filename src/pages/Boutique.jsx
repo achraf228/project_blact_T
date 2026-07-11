@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import useReveal from '../hooks/useReveal';
 
-const categories = ['Tout', 'Albums', 'T-shirts', 'Casquettes', 'Pulls'];
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
-const products = [
-  { name: 'Album - Igwe Empire (CD)', cat: 'Albums', price: '15€', img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=600&auto=format&fit=crop' },
-  { name: 'Album - Rue & Royaume (Vinyle)', cat: 'Albums', price: '25€', img: 'https://images.unsplash.com/photo-1571330735066-03aaa9429d89?q=80&w=600&auto=format&fit=crop' },
-  { name: 'T-shirt Igwe Logo', cat: 'T-shirts', price: '29€', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop' },
-  { name: 'T-shirt Black Flame', cat: 'T-shirts', price: '32€', img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600&auto=format&fit=crop' },
-  { name: 'Casquette Empire', cat: 'Casquettes', price: '24€', img: 'https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=600&auto=format&fit=crop' },
-  { name: 'Casquette Black-T', cat: 'Casquettes', price: '22€', img: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop' },
-  { name: 'Pull Igwe Royal', cat: 'Pulls', price: '49€', img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600&auto=format&fit=crop' },
-  { name: 'Pull Capuche Empire', cat: 'Pulls', price: '54€', img: 'https://images.unsplash.com/photo-1542406775-fe1aff67afba?q=80&w=600&auto=format&fit=crop' },
-];
+function formatPrice(prix) {
+  return `${new Intl.NumberFormat('fr-FR').format(prix)} FCFA`;
+}
 
 export default function Boutique() {
   useReveal();
   const [active, setActive] = useState('Tout');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  const filtered = active === 'Tout' ? products : products.filter((p) => p.cat === active);
+  useEffect(() => {
+    fetch(`${API_URL}/api/produits`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Réponse invalide');
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
+
+  const categories = useMemo(
+    () => ['Tout', ...Array.from(new Set(products.map((p) => p.categorie)))],
+    [products]
+  );
+
+  const filtered = active === 'Tout' ? products : products.filter((p) => p.categorie === active);
 
   return (
     <>
@@ -33,39 +50,57 @@ export default function Boutique() {
 
       <section className="section section-dark">
         <div className="container">
-          <div className="d-flex flex-wrap justify-content-center gap-2 mb-5 reveal">
-            {categories.map((c) => (
-              <button
-                key={c}
-                onClick={() => setActive(c)}
-                className={active === c ? 'btn btn-brand btn-sm' : 'btn btn-outline-brand btn-sm'}
-              >
-                {c}
-              </button>
-            ))}
-          </div>
+          {loading && <p className="text-center">Chargement...</p>}
+          {error && <p className="text-center">Impossible de charger la boutique pour le moment.</p>}
 
-          <div className="row g-4">
-            {filtered.map((p, i) => (
-              <div className="col-sm-6 col-lg-3 reveal" key={p.name} style={{ transitionDelay: `${i * 0.07}s` }}>
-                <div className="card-brand">
-                  <div className="card-img-wrap">
-                    <img src={p.img} alt={p.name} className="w-100" style={{ height: 220, objectFit: 'cover' }} />
-                  </div>
-                  <div className="p-3">
-                    <p className="mb-1" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
-                      {p.cat}
-                    </p>
-                    <h6 className="mb-2">{p.name}</h6>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <span className="price-tag">{p.price}</span>
-                      <button className="btn btn-brand btn-sm">Ajouter</button>
+          {!loading && !error && (
+            <>
+              <div className="d-flex flex-wrap justify-content-center gap-2 mb-5 reveal">
+                {categories.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setActive(c)}
+                    className={active === c ? 'btn btn-brand btn-sm' : 'btn btn-outline-brand btn-sm'}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+
+              {filtered.length === 0 && <p className="text-center">Aucun produit pour l'instant.</p>}
+
+              <div className="row g-4">
+                {filtered.map((p, i) => (
+                  <div className="col-sm-6 col-lg-3 reveal" key={p.id} style={{ transitionDelay: `${i * 0.07}s` }}>
+                    <div className="card-brand">
+                      <div className="card-img-wrap">
+                        {p.image ? (
+                          <img
+                            src={`${API_URL}/storage/${p.image}`}
+                            alt={p.nom}
+                            className="w-100"
+                            style={{ height: 220, objectFit: 'cover' }}
+                          />
+                        ) : (
+                          <div className="w-100" style={{ height: 220, background: 'var(--color-surface, #1a1a1a)' }} />
+                        )}
+                      </div>
+                      <div className="p-3">
+                        <p className="mb-1" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
+                          {p.categorie}
+                        </p>
+                        <h6 className="mb-2">{p.nom}</h6>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span className="price-tag">{formatPrice(p.prix)}</span>
+                          <button className="btn btn-brand btn-sm">Ajouter</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
       </section>
     </>

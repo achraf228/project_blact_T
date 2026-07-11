@@ -5,10 +5,10 @@ import useReveal from '../hooks/useReveal';
 const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
 const platformIcons = [
-  { key: 'spotify_url', label: 'Spotify', Icon: SiSpotify },
-  { key: 'applemusic_url', label: 'Apple Music', Icon: SiApplemusic },
-  { key: 'youtube_url', label: 'YouTube', Icon: SiYoutube },
-  { key: 'audiomack_url', label: 'Audiomack', Icon: SiAudiomack },
+  { key: 'spotify_url', label: 'Spotify', Icon: SiSpotify, color: '#1DB954' },
+  { key: 'applemusic_url', label: 'Apple Music', Icon: SiApplemusic, color: '#FA243C' },
+  { key: 'youtube_url', label: 'YouTube', Icon: SiYoutube, color: '#FF0000' },
+  { key: 'audiomack_url', label: 'Audiomack', Icon: SiAudiomack, color: '#FFA200' },
 ];
 
 export default function Discographie() {
@@ -75,7 +75,7 @@ export default function Discographie() {
                     <div className="d-flex justify-content-center gap-3" style={{ fontSize: '1.4rem' }}>
                       {platformIcons
                         .filter(({ key }) => m[key])
-                        .map(({ key, label, Icon }) => (
+                        .map(({ key, label, Icon, color }) => (
                           <a
                             key={key}
                             href={m[key]}
@@ -83,6 +83,7 @@ export default function Discographie() {
                             rel="noopener noreferrer"
                             aria-label={`Écouter ${m.titre} sur ${label}`}
                             className="link-btn"
+                            style={{ color }}
                           >
                             <Icon />
                           </a>
