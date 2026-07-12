@@ -21,9 +21,9 @@ Le site est fonctionnel et navigable de bout en bout, mais certains éléments s
 
 | Élément | État actuel | À faire |
 |---|---|---|
-| Images (albums, actus, portraits) | Photos stock Unsplash | Remplacer par les vraies photos / pochettes |
-| Liens réseaux sociaux (Footer) | Fonctionnel |       |
-| Liens plateformes (`/decouvrir`) | Fonctionnels | Remplacer par les vrais liens de l'artiste |
+| Images (albums, actus, portraits) | Fonctionnels | Remplacer par les vraies photos / pochettes |
+| Liens réseaux sociaux (Footer) | Fonctionnel |   Déja propre    |
+| Liens plateformes  | Fonctionnels | Déja propre |
 | Boutique  bouton "Ajouter" | Sans effet | Pas de logique panier prévue tant que ce n'est pas confirmé comme besoin |
 | Événements  bouton "Réserver" | Sans effet | À relier à une billetterie externe si besoin |
 
@@ -33,9 +33,9 @@ Rien de ce qui précède n'est un bug : c'est du contenu à fournir par l'artist
 
 - React 18 + React Router DOM 6
 - Vite 8 (bundler) + `@vitejs/plugin-react` 6
-- Bootstrap 5 (grille, composants, responsive)
+- Bootstrap 5 
 - `react-icons` (icônes de marque - Simple Icons)
-- CSS personnalisé (`src/styles/global.css`) pour la palette, les animations (fade-in, hover, scroll-reveal via `IntersectionObserver`)
+- CSS personnalisé (`src/styles/global.css`) pour la palette, les animations 
 
 ## Structure du projet
 
@@ -49,7 +49,7 @@ project_blact_T/
 │   ├── hooks/        → useReveal (animations au scroll)
 │   ├── images/       → assets locaux (Bio.jpg, bg_blackt.jpg)
 │   ├── styles/       → global.css (variables de couleur, animations)
-│   ├── App.jsx       → routing + montage Navbar/Footer conditionnel
+│   ├── App.jsx       → routing + montage Navbar/Footer 
 │   └── main.jsx       → point d'entrée
 ├── index.html
 ├── package.json
