@@ -57,7 +57,7 @@ export default function Decouvrir() {
         ))}
 
         <Link to="/" className="btn btn-outline-brand mt-3">
-          ← Retour à l'accueil
+           Retour à l'accueil
         </Link>
       </div>
     </div>
